@@ -1,0 +1,54 @@
+PROPRIETARY LICENSE
+
+Copyright (c) 2025 Swarup Biswas. All Rights Reserved.
+
+NOTICE: This repository contains proprietary intellectual property. This is NOT 
+open-source software. All rights are reserved.
+
+PROPRIETARY MATERIALS
+---------------------
+The following materials in this repository are proprietary:
+- SLC Product Development Sequence
+- SLC Framework and methodologies
+- Build prompts and workshop materials
+- Associated frameworks and methodologies
+
+PERMITTED USE
+-------------
+You may:
+- View this content for personal reference and learning
+- Use these frameworks to build your own projects (personal use only)
+- Share the link to the GitHub Pages site (not the content itself)
+
+PROHIBITED USE
+--------------
+Without explicit written permission from the author, you may NOT:
+- Use these materials for commercial purposes
+- Use these materials for training, teaching, or educational programs
+- Use these materials for workshops, courses, or seminars
+- Redistribute, republish, or share the content
+- Create derivative works based on these frameworks
+- Use these materials to train AI models or datasets
+- Claim authorship or remove copyright notices
+- Include these materials in any product or service
+- Fork this repository for purposes other than personal reference
+
+AI TRAINING RESTRICTION
+-----------------------
+This content is explicitly excluded from use in training machine learning 
+models, large language models (LLMs), or any artificial intelligence systems. 
+Automated scraping or indexing for AI training purposes is prohibited.
+
+ATTRIBUTION
+----------
+If you reference these frameworks in permitted contexts, please attribute as:
+"SLC Product Development Sequence © 2025 Swarup Biswas"
+
+LICENSING INQUIRIES
+-------------------
+For licensing inquiries, permission requests, or questions about permitted use, 
+please contact: swarup.biswas@outlook.com
+
+This license does not grant any rights beyond those explicitly stated above. 
+All other rights are reserved.
+
