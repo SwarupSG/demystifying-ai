@@ -1,0 +1,1748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demystifying AI — Workshop Resources</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .header .welcome {
+            margin-top: 20px;
+            font-size: 1rem;
+            opacity: 0.85;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Navigation */
+        .nav {
+            background: rgba(255,255,255,0.95);
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            position: sticky;
+            top: 10px;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .nav-title {
+            font-weight: 600;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .nav-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .nav-copyright {
+            font-size: 0.75rem;
+            color: #868e96;
+            text-decoration: none;
+            padding: 3px 8px;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        
+        .nav-copyright:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .nav-links a {
+            color: #495057;
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 5px 12px;
+            background: #f1f3f4;
+            border-radius: 20px;
+            transition: all 0.2s;
+        }
+        
+        .nav-links a:hover {
+            background: #667eea;
+            color: white;
+        }
+        
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        
+        .card h2 {
+            font-size: 1.4rem;
+            color: #1a1a2e;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .card h3 {
+            font-size: 1.1rem;
+            color: #333;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .card p {
+            margin-bottom: 12px;
+        }
+        
+        /* Framework Steps */
+        .framework-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-name {
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+        
+        .step-desc {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        /* SLC Grid */
+        .slc-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        @media (max-width: 600px) {
+            .slc-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .slc-box {
+            padding: 20px 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .slc-simple {
+            background: linear-gradient(135deg, #d3f9d8 0%, #b2f2bb 100%);
+            border: 2px solid #40c057;
+        }
+        
+        .slc-lovable {
+            background: linear-gradient(135deg, #fff3bf 0%, #ffe066 100%);
+            border: 2px solid #fab005;
+        }
+        
+        .slc-complete {
+            background: linear-gradient(135deg, #d0ebff 0%, #a5d8ff 100%);
+            border: 2px solid #339af0;
+        }
+        
+        .slc-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .slc-simple .slc-title { color: #2f9e44; }
+        .slc-lovable .slc-title { color: #e67700; }
+        .slc-complete .slc-title { color: #1971c2; }
+        
+        .slc-percent {
+            font-size: 1.5rem;
+            font-weight: 700;
+            opacity: 0.7;
+        }
+        
+        .slc-desc {
+            font-size: 0.85rem;
+            margin-top: 8px;
+            color: #495057;
+        }
+        
+        .slc-question {
+            font-size: 0.8rem;
+            font-style: italic;
+            margin-top: 5px;
+            color: #666;
+        }
+        
+        /* Prompt Templates */
+        .prompt-block {
+            margin-top: 20px;
+            position: relative;
+        }
+        
+        .prompt-label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #495057;
+        }
+        
+        .prompt-code {
+            background: #1a1a2e;
+            color: #e9ecef;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.8rem;
+            line-height: 1.5;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            position: relative;
+        }
+        
+        .prompt-code.error {
+            border-left: 4px solid #fa5252;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .copy-btn:hover {
+            background: #5a67d8;
+        }
+        
+        .copy-btn.copied {
+            background: #40c057;
+        }
+        
+        /* Tools Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        @media (max-width: 500px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .tool-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+        
+        .tool-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .tool-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #1a1a2e;
+            margin-bottom: 5px;
+        }
+        
+        .tool-desc {
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        .tool-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #667eea;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        /* First Win Section */
+        .first-win-box {
+            background: linear-gradient(135deg, #fff3bf 0%, #ffe8cc 100%);
+            border: 2px solid #fab005;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 15px;
+        }
+        
+        .first-win-box h3 {
+            color: #e67700;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        
+        .first-win-questions {
+            list-style: none;
+        }
+        
+        .first-win-questions li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .first-win-questions li:last-child {
+            border-bottom: none;
+        }
+        
+        .first-win-questions li:before {
+            content: attr(data-num);
+            position: absolute;
+            left: 0;
+            width: 22px;
+            height: 22px;
+            background: #e67700;
+            color: white;
+            border-radius: 50%;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .commitment-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        @media (max-width: 500px) {
+            .commitment-options {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .commitment-option {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+        
+        .commitment-option strong {
+            display: block;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+        
+        /* 15-Minute Rule */
+        .rule-highlight {
+            background: #e7f5ff;
+            border-left: 4px solid #339af0;
+            padding: 15px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 20px;
+        }
+        
+        .rule-highlight strong {
+            color: #1971c2;
+        }
+        
+        /* Checklist */
+        .checklist {
+            list-style: none;
+            margin-top: 15px;
+        }
+        
+        .checklist li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .checklist li:before {
+            content: "☐";
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+            color: #667eea;
+        }
+        
+        /* Key Phrases */
+        .phrases-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .phrases-table th {
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .phrases-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .phrases-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .phrases-table .dont {
+            color: #868e96;
+        }
+        
+        .phrases-table .do {
+            color: #2f9e44;
+            font-weight: 500;
+        }
+        
+        /* Product Development Steps */
+        .dev-steps {
+            counter-reset: step-counter;
+        }
+        
+        .proprietary-section {
+            position: relative;
+        }
+        
+        .proprietary-watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-30deg);
+            font-size: 4rem;
+            font-weight: 700;
+            color: rgba(102, 126, 234, 0.06);
+            pointer-events: none;
+            white-space: nowrap;
+            z-index: 0;
+            user-select: none;
+        }
+        
+        .proprietary-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 20px;
+            margin-left: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .proprietary-notice {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            font-size: 0.8rem;
+            color: #666;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .proprietary-notice-icon {
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .dev-step {
+            padding: 12px 15px 12px 50px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        
+        .dev-step:before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            left: 15px;
+            top: 12px;
+            width: 24px;
+            height: 24px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .dev-step-title {
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+        
+        .dev-step-desc {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 3px;
+        }
+        
+        /* Build Steps */
+        .build-step {
+            margin-top: 25px;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .build-step-header {
+            padding: 15px 20px;
+            background: #f8f9fa;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .build-step-header:hover {
+            background: #e9ecef;
+        }
+        
+        .build-step-title {
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+        
+        .build-step-badge {
+            font-size: 0.75rem;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        
+        .badge-simple {
+            background: #d3f9d8;
+            color: #2f9e44;
+        }
+        
+        .badge-lovable {
+            background: #fff3bf;
+            color: #e67700;
+        }
+        
+        .badge-complete {
+            background: #d0ebff;
+            color: #1971c2;
+        }
+        
+        .badge-setup {
+            background: #e9ecef;
+            color: #495057;
+        }
+        
+        .build-step-content {
+            padding: 20px;
+            border-top: 1px solid #dee2e6;
+        }
+        
+        .build-step-note {
+            background: #fff9db;
+            border-left: 4px solid #fab005;
+            padding: 10px 15px;
+            margin-bottom: 15px;
+            font-size: 0.85rem;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        .build-step-note strong {
+            color: #e67700;
+        }
+        
+        .build-step-verify {
+            background: #d3f9d8;
+            border-left: 4px solid #40c057;
+            padding: 10px 15px;
+            margin-top: 15px;
+            font-size: 0.85rem;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        .build-step-verify strong {
+            color: #2f9e44;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: white;
+        }
+        
+        .footer p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .footer .quote {
+            font-style: italic;
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 20px auto 0;
+            opacity: 0.9;
+        }
+        
+        /* Save Button */
+        .save-section {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #dee2e6;
+        }
+        
+        /* Terms of Use */
+        .terms-card {
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+        }
+        
+        .terms-card h2 {
+            border-bottom-color: #868e96;
+        }
+        
+        .terms-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 5px 0;
+        }
+        
+        .terms-header:hover {
+            color: #667eea;
+        }
+        
+        .terms-content {
+            display: none;
+            padding-top: 15px;
+            border-top: 1px solid #dee2e6;
+            margin-top: 15px;
+        }
+        
+        .terms-content.active {
+            display: block;
+        }
+        
+        .terms-content h3 {
+            color: #495057;
+            font-size: 1rem;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .terms-content h3:first-child {
+            margin-top: 0;
+        }
+        
+        .terms-content ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .terms-content li {
+            margin-bottom: 5px;
+            color: #495057;
+            font-size: 0.9rem;
+        }
+        
+        .terms-content p {
+            font-size: 0.9rem;
+            color: #495057;
+        }
+        
+        .terms-contact {
+            background: #e7f5ff;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        
+        .terms-contact a {
+            color: #1971c2;
+            font-weight: 600;
+        }
+        
+        /* Footer Copyright */
+        .footer-copyright {
+            background: rgba(0,0,0,0.2);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .footer-copyright strong {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+        }
+        
+        .footer-copyright p {
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+        
+        /* Collapsible */
+        .collapsible-content {
+            display: none;
+        }
+        
+        .collapsible-content.active {
+            display: block;
+        }
+        
+        .expand-icon {
+            transition: transform 0.3s;
+        }
+        
+        .expand-icon.rotated {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- Header -->
+    <header class="header">
+        <h1>Demystifying AI</h1>
+        <p class="subtitle">Workshop Resources</p>
+        <p class="welcome">
+            Everything you need to start building with AI. 
+            Bookmark this page or save it for offline access (Ctrl+S / Cmd+S).
+        </p>
+    </header>
+    
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-header">
+            <div class="nav-title">Jump to Section</div>
+            <a href="#terms" class="nav-copyright" title="Terms of Use">© Terms</a>
+        </div>
+        <div class="nav-links">
+            <a href="#framework">The Pattern</a>
+            <a href="#slc">SLC Framework</a>
+            <a href="#prompts">Prompt Templates</a>
+            <a href="#product-dev">Product Development</a>
+            <a href="#hydration">Hydration App Build</a>
+            <a href="#tools">Tools</a>
+            <a href="#first-win">Your First Win</a>
+        </div>
+    </nav>
+    
+    <!-- Section 1: The Pattern -->
+    <div class="card" id="framework">
+        <h2>The Collaboration Framework</h2>
+        <p style="margin-bottom: 15px; color: #666; font-style: italic;">
+            AI is a collaborator, not a vending machine. Work in steps, not wishes.
+        </p>
+        
+        <div class="framework-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <div class="step-name">Set Role</div>
+                    <div class="step-desc">"You are a [role] helping me..."</div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <div class="step-name">Give Context</div>
+                    <div class="step-desc">"This is for [audience/purpose]..."</div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <div class="step-name">Set Constraints</div>
+                    <div class="step-desc">"Do NOT... / Build ONLY... / STOP..."</div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <div class="step-name">Build One Thing</div>
+                    <div class="step-desc">Request one feature, verify it works</div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <div class="step-name">Repeat</div>
+                    <div class="step-desc">Next feature only after confirmation</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Section 2: SLC Framework -->
+    <div class="card" id="slc">
+        <h2>The SLC Framework</h2>
+        <p style="margin-bottom: 15px; color: #666; font-style: italic;">
+            Not "minimum viable" — Simple, Lovable, Complete. Build in this order.
+        </p>
+        
+        <div class="slc-grid">
+            <div class="slc-box slc-simple">
+                <div class="slc-title">SIMPLE</div>
+                <div class="slc-percent">40%</div>
+                <div class="slc-desc">Core function only</div>
+                <div class="slc-question">Does it WORK?</div>
+            </div>
+            <div class="slc-box slc-lovable">
+                <div class="slc-title">LOVABLE</div>
+                <div class="slc-percent">35%</div>
+                <div class="slc-desc">Emotional resonance</div>
+                <div class="slc-question">Do they WANT to use it?</div>
+            </div>
+            <div class="slc-box slc-complete">
+                <div class="slc-title">COMPLETE</div>
+                <div class="slc-percent">25%</div>
+                <div class="slc-desc">Reliability & polish</div>
+                <div class="slc-question">Does it handle failure?</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Section 3: Prompt Templates -->
+    <div class="card" id="prompts">
+        <h2>Prompt Templates</h2>
+        <p style="margin-bottom: 10px; color: #666;">
+            Copy these templates and customize for your project.
+        </p>
+        
+        <div class="prompt-block">
+            <div class="prompt-label">Starting a Project:</div>
+            <div class="prompt-code" id="prompt-start">
+                <button class="copy-btn" onclick="copyPrompt('prompt-start')">Copy</button>You are a [ROLE] helping me build [PROJECT].
+
+CONTEXT: This is for [AUDIENCE/PURPOSE].
+[KEY CONSTRAINT, e.g., "Speed matters more than features."]
+
+CONSTRAINTS:
+– Do NOT add features I haven't requested
+– Do NOT suggest alternatives unless asked
+– After each step, STOP and wait for confirmation
+
+SCOPE: This project includes ONLY:
+1. [Component 1]
+2. [Component 2]
+3. [Component 3]
+
+Build step-by-step. Confirm each step before continuing.
+Say "Ready" and wait.</div>
+        </div>
+        
+        <div class="prompt-block">
+            <div class="prompt-label">When Something Goes Wrong:</div>
+            <div class="prompt-code error" id="prompt-fix">
+                <button class="copy-btn" onclick="copyPrompt('prompt-fix')">Copy</button>The [element] isn't working correctly.
+
+Expected: [what you asked for]
+Actual: [what happened]
+
+Fix ONLY this issue. Do not change anything else.</div>
+        </div>
+        
+        <div class="prompt-block">
+            <div class="prompt-label">When AI Adds Unwanted Features:</div>
+            <div class="prompt-code error" id="prompt-remove">
+                <button class="copy-btn" onclick="copyPrompt('prompt-remove')">Copy</button>You added [feature] which I didn't request.
+Remove it completely. Keep everything else as is.</div>
+        </div>
+        
+        <h3>Key Phrases</h3>
+        <table class="phrases-table">
+            <tr>
+                <th>Instead of...</th>
+                <th>Say...</th>
+            </tr>
+            <tr>
+                <td class="dont">"Make it good"</td>
+                <td class="do">"Use [specific style/format]"</td>
+            </tr>
+            <tr>
+                <td class="dont">"Add some features"</td>
+                <td class="do">"Add ONLY [specific feature]"</td>
+            </tr>
+            <tr>
+                <td class="dont">"Fix it"</td>
+                <td class="do">"Expected X, got Y. Fix only this."</td>
+            </tr>
+            <tr>
+                <td class="dont">"Keep going"</td>
+                <td class="do">"STOP after this step. Confirm."</td>
+            </tr>
+            <tr>
+                <td class="dont">(nothing)</td>
+                <td class="do">"Do NOT [thing you don't want]"</td>
+            </tr>
+        </table>
+    </div>
+    
+    <!-- Section 4: Product Development Steps -->
+    <div class="card proprietary-section" id="product-dev">
+        <div class="proprietary-watermark">© PROPRIETARY</div>
+        <h2>SLC Product Development Sequence <span class="proprietary-badge">© Proprietary</span></h2>
+        
+        <div class="proprietary-notice">
+            <span class="proprietary-notice-icon">⚠️</span>
+            <span>
+                <strong>© 2025 Swarup Biswas.</strong> This framework is proprietary intellectual property. 
+                For personal reference only. Not licensed for commercial use, training, teaching, or redistribution. 
+                <a href="#terms">View full terms</a>.
+            </span>
+        </div>
+        
+        <p style="margin-bottom: 15px; color: #666;">
+            The complete sequence from idea to launch. Use this as your roadmap.
+        </p>
+        
+        <div class="dev-steps">
+            <div class="dev-step">
+                <div class="dev-step-title">Problem Understanding & Opportunity Framing</div>
+                <div class="dev-step-desc">Define core problem, urgency, affected users, success metrics</div>
+            </div>
+            <div class="dev-step">
+                <div class="dev-step-title">Personas & Use Context</div>
+                <div class="dev-step-desc">Primary/secondary personas, environment, constraints, behavior patterns</div>
+            </div>
+            <div class="dev-step">
+                <div class="dev-step-title">Competitive Landscape & Research</div>
+                <div class="dev-step-desc">Existing solutions, praise/complaints, market gaps, opportunities</div>
+            </div>
+            <div class="dev-step">
+                <div class="dev-step-title">SLC Definition (Concept Level)</div>
+                <div class="dev-step-desc">SIMPLE scope, LOVABLE features, COMPLETE requirements, exclusions</div>
+            </div>
+            <div class="dev-step">
+                <div class="dev-step-title">User Journey Mapping</div>
+                <div class="dev-step-desc">Awareness → First Use → Habit Loop → Completion → Return</div>
+            </div>
+            <div class="dev-step">
+                <div class="dev-step-title">Feature List (SLC Organized)</div>
+                <div class="dev-step-desc">SIMPLE (3-5), LOVABLE (2-3), COMPLETE (2-3) with user stories</div>
+            </div>
+            <div class="dev-step">
+                <div class="dev-step-title">Wireframes (Low Fidelity)</div>
+                <div class="dev-step-desc">5-7 key screens, layout, navigation, states, delight moments</div>
+            </div>
+            <div class="dev-step">
+                <div class="dev-step-title">SLC Prioritization</div>
+                <div class="dev-step-desc">Assign S/L/C, effort split 40/35/25, dependencies, risks</div>
+            </div>
+            <div class="dev-step">
+                <div class="dev-step-title">SLC Scope Statement</div>
+                <div class="dev-step-desc">Scope per phase, success criteria, exclusions, launch checklist</div>
+            </div>
+            <div class="dev-step">
+                <div class="dev-step-title">Development Roadmap</div>
+                <div class="dev-step-desc">SIMPLE → LOVABLE → COMPLETE phases, QA plan, launch plan</div>
+            </div>
+            <div class="dev-step">
+                <div class="dev-step-title">PRD Assembly</div>
+                <div class="dev-step-desc">Overview, problem, persona, research, requirements, wireframes, risks</div>
+            </div>
+            <div class="dev-step">
+                <div class="dev-step-title">Build Prompts (Step-by-Step)</div>
+                <div class="dev-step-desc">Exact build commands, no improvisation, verify each step</div>
+            </div>
+            <div class="dev-step">
+                <div class="dev-step-title">QA & Acceptance Criteria</div>
+                <div class="dev-step-desc">SIMPLE checks, LOVABLE experience, COMPLETE reliability</div>
+            </div>
+            <div class="dev-step">
+                <div class="dev-step-title">Launch Preparation</div>
+                <div class="dev-step-desc">Final UX polish, testing, permissions, release readiness</div>
+            </div>
+            <div class="dev-step">
+                <div class="dev-step-title">Post-Launch Roadmap</div>
+                <div class="dev-step-desc">v1.1 enhancements, v1.2 improvements, v2.0 expansions</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Section 5: Hydration App Build -->
+    <div class="card proprietary-section" id="hydration">
+        <div class="proprietary-watermark">© PROPRIETARY</div>
+        <h2>Complete Example: Hydration Tracker App <span class="proprietary-badge">© Proprietary</span></h2>
+        
+        <div class="proprietary-notice">
+            <span class="proprietary-notice-icon">⚠️</span>
+            <span>
+                <strong>© 2025 Swarup Biswas.</strong> This worked example and SLC build methodology are proprietary. 
+                For personal reference only. <a href="#terms">View full terms</a>.
+            </span>
+        </div>
+        
+        <p style="margin-bottom: 15px; color: #666;">
+            A worked example showing all 11 prompts to build a complete app using the SLC framework. 
+            Click each step to expand the full prompt.
+        </p>
+        
+        <!-- Step 0 -->
+        <div class="build-step">
+            <div class="build-step-header" onclick="toggleStep(this)">
+                <span class="build-step-title">Step 0 — Initialization</span>
+                <span class="build-step-badge badge-setup">SETUP</span>
+            </div>
+            <div class="build-step-content collapsible-content">
+                <div class="build-step-note">
+                    <strong>Teaching Point:</strong> Set strict boundaries BEFORE building. This prevents AI from improvising.
+                </div>
+                <div class="prompt-code" id="prompt-step0">
+                    <button class="copy-btn" onclick="copyPrompt('prompt-step0')">Copy</button>You are a senior frontend developer helping me build a simple hydration tracking web app using the SLC framework (Simple → Lovable → Complete).
+
+CONTEXT: This app is for busy professionals who forget to drink water. Speed and simplicity matter more than features. We're building this in under 90 minutes.
+
+IMPORTANT CONSTRAINTS:
+– Do NOT add features I have not explicitly requested
+– Do NOT suggest alternative layouts or screens unless asked
+– Build each step EXACTLY as described
+– After completing each step, STOP and wait for the next prompt
+– If you're unsure about anything, ASK rather than guessing
+
+UI REQUIREMENTS:
+– Mobile-first, responsive design
+– Minimum 48px touch targets for all buttons
+– Clean, minimal layout with system fonts
+– Blue/white color theme
+
+SCOPE: The app requires ONLY the following screens:
+1. Home (main tracking screen)
+2. Settings
+3. Onboarding (3-step carousel)
+4. Help / FAQ
+5. Goal Celebration modal
+
+I will prompt you step-by-step through SIMPLE → LOVABLE → COMPLETE phases.
+Confirm when each step is done. Say "Ready for Step 1" and wait.</div>
+                <div class="build-step-verify">
+                    <strong>Expected Response:</strong> AI confirms understanding and says "Ready for Step 1"
+                </div>
+            </div>
+        </div>
+        
+        <!-- Step 1 -->
+        <div class="build-step">
+            <div class="build-step-header" onclick="toggleStep(this)">
+                <span class="build-step-title">Step 1 — Base Screens</span>
+                <span class="build-step-badge badge-simple">SIMPLE</span>
+            </div>
+            <div class="build-step-content collapsible-content">
+                <div class="build-step-note">
+                    <strong>Teaching Point:</strong> Structure before substance. Create the skeleton first, no logic yet.
+                </div>
+                <div class="prompt-code" id="prompt-step1">
+                    <button class="copy-btn" onclick="copyPrompt('prompt-step1')">Copy</button>Create ONLY the screens listed below, nothing else:
+– Home
+– Settings
+– Onboarding (3-step carousel)
+– Help / FAQ
+– Goal Celebration modal
+
+Requirements:
+– Minimalist blue/white theme
+– Clean layout with clear visual hierarchy
+– Clear navigation: Home → Settings → Help
+– Do NOT add any features or logic yet
+– Only create screen structure + headings
+
+EXCLUSIONS: No water logging, no progress bar, no avatar, no animations yet.
+
+STOP after screen creation.
+Confirm with: "Base screens created. Ready for Step 2."</div>
+                <div class="build-step-verify">
+                    <strong>Verify:</strong> All 5 screens exist with headings. Navigation works. No functionality yet.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Step 2 -->
+        <div class="build-step">
+            <div class="build-step-header" onclick="toggleStep(this)">
+                <span class="build-step-title">Step 2 — One-Tap Logging</span>
+                <span class="build-step-badge badge-simple">SIMPLE</span>
+            </div>
+            <div class="build-step-content collapsible-content">
+                <div class="build-step-note">
+                    <strong>Teaching Point:</strong> The core feature, nothing else. This is the heart of SIMPLE.
+                </div>
+                <div class="prompt-code" id="prompt-step2">
+                    <button class="copy-btn" onclick="copyPrompt('prompt-step2')">Copy</button>On the Home screen, add ONLY these elements:
+
+1. Three large buttons labeled: +100 ml, +200 ml, +300 ml
+2. A numeric display showing today's total water intake
+
+Logic Requirements:
+– When a button is tapped, increase hydrationTotal by the corresponding amount
+– Store updated hydrationTotal in LocalStorage
+– Display updated total immediately on screen
+– Data must persist across page refreshes
+
+EXCLUSIONS: NO avatar, NO animations, NO progress bar yet.
+
+STOP after implementing ONLY this functionality.
+Confirm with: "One-tap logging implemented. Ready for Step 3."</div>
+                <div class="build-step-verify">
+                    <strong>Verify:</strong> Tap each button → total increases. Refresh page → total persists.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Step 3 -->
+        <div class="build-step">
+            <div class="build-step-header" onclick="toggleStep(this)">
+                <span class="build-step-title">Step 3 — Progress Bar + Reset</span>
+                <span class="build-step-badge badge-simple">SIMPLE</span>
+            </div>
+            <div class="build-step-content collapsible-content">
+                <div class="build-step-note">
+                    <strong>Teaching Point:</strong> Visual feedback creates behavior loops. Still functional, not delightful yet.
+                </div>
+                <div class="prompt-code" id="prompt-step3">
+                    <button class="copy-btn" onclick="copyPrompt('prompt-step3')">Copy</button>Add a progress bar to the Home screen that visualizes:
+hydrationTotal / dailyGoal
+
+Behavior:
+– Progress bar updates immediately on each log
+– Color ranges:
+  • 0–40% = grey
+  • 40–80% = light blue  
+  • 80–100% = bright blue
+– Implement auto-reset at midnight using lastSavedDate stored in LocalStorage
+– When date changes, reset hydrationTotal to 0
+
+Default dailyGoal: 2000 ml
+
+EXCLUSIONS: Do NOT add avatar or celebrations yet.
+
+STOP after the progress bar + reset logic is functional.
+Confirm with: "Progress bar + reset logic complete. Ready for Step 4."</div>
+                <div class="build-step-verify">
+                    <strong>Verify:</strong> Progress bar fills as you log. Colors change at thresholds. Change device date → total resets.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Step 4 -->
+        <div class="build-step">
+            <div class="build-step-header" onclick="toggleStep(this)">
+                <span class="build-step-title">Step 4 — Progressive Reminders</span>
+                <span class="build-step-badge badge-simple">SIMPLE</span>
+            </div>
+            <div class="build-step-content collapsible-content">
+                <div class="build-step-note">
+                    <strong>Teaching Point:</strong> Build the mechanism before the personality. Reminders work, but aren't charming yet.
+                </div>
+                <div class="prompt-code" id="prompt-step4">
+                    <button class="copy-btn" onclick="copyPrompt('prompt-step4')">Copy</button>Implement progressive reminders based on inactivity.
+
+Behavior Requirements:
+– Track timestamp lastLogTime whenever user logs water
+– Trigger notifications at: 15 min, 30 min, 45 min, 60 min of inactivity
+– Use the browser Notification API
+– Reminders MUST stop after the user logs water again
+– Request notification permission on first use
+
+UI Requirements:
+– Add a simple toggle in Settings: "Reminders ON/OFF"
+– Save toggle state in LocalStorage
+– Only send notifications when toggle is ON
+
+EXCLUSIONS: Do NOT add micro-copy or contextual messages yet. Generic reminder text is fine.
+
+STOP after implementing basic reminders + toggle.
+Confirm with: "Progressive reminders implemented. Ready for Step 5."</div>
+                <div class="build-step-verify">
+                    <strong>Verify:</strong> Enable reminders → wait 15 min → notification appears. Log water → timer resets. Toggle off → no notifications.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Step 5 -->
+        <div class="build-step">
+            <div class="build-step-header" onclick="toggleStep(this)">
+                <span class="build-step-title">Step 5 — Daily Goal Settings</span>
+                <span class="build-step-badge badge-simple">SIMPLE</span>
+            </div>
+            <div class="build-step-content collapsible-content">
+                <div class="build-step-note">
+                    <strong>Teaching Point:</strong> SIMPLE is now complete. It WORKS, but you wouldn't ENJOY using it yet.
+                </div>
+                <div class="prompt-code" id="prompt-step5">
+                    <button class="copy-btn" onclick="copyPrompt('prompt-step5')">Copy</button>On the Settings screen, add:
+
+1. Numeric input field for dailyGoal
+   – Default: 2000 ml
+   – Range: 500–5000 ml
+   – Include + / - buttons for easy adjustment
+
+2. Toggle for reminders (linked to Step 4)
+
+3. Store all values in LocalStorage
+
+4. Ensure Home progress bar uses the updated goal immediately
+
+EXCLUSIONS: Do NOT add UI decoration, animation, or advanced settings.
+
+STOP after Settings is fully functional.
+Confirm with: "Settings implemented. SIMPLE phase complete. Ready for LOVABLE Step 6."</div>
+                <div class="build-step-verify">
+                    <strong>Verify:</strong> Change goal → progress bar recalculates. Refresh → settings persist. All SIMPLE features work together.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Step 6 -->
+        <div class="build-step">
+            <div class="build-step-header" onclick="toggleStep(this)">
+                <span class="build-step-title">Step 6 — Avatar</span>
+                <span class="build-step-badge badge-lovable">LOVABLE</span>
+            </div>
+            <div class="build-step-content collapsible-content">
+                <div class="build-step-note">
+                    <strong>Teaching Point:</strong> Now we add personality. This transforms "tool" into "companion."
+                </div>
+                <div class="prompt-code" id="prompt-step6">
+                    <button class="copy-btn" onclick="copyPrompt('prompt-step6')">Copy</button>Add a hydration avatar to the Home screen.
+
+Requirements:
+– Avatar has ONLY 3 states:
+  • Neutral face: 0–40%
+  • Content face: 40–80%
+  • Happy face: 80–100%
+– Avatar must update dynamically when progress changes
+– Add a subtle bounce animation on each water log
+– Keep avatar style neutral, adult-friendly (no cartoons, no childish designs)
+– Position avatar prominently but not distractingly
+
+EXCLUSIONS: No sounds, no complex animations, no multiple avatar options.
+
+STOP after avatar is added and functional.
+Confirm with: "Avatar implemented. Ready for Step 7."</div>
+                <div class="build-step-verify">
+                    <strong>Verify:</strong> Log water → avatar bounces. Cross 40% → face changes. Cross 80% → face changes again.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Step 7 -->
+        <div class="build-step">
+            <div class="build-step-header" onclick="toggleStep(this)">
+                <span class="build-step-title">Step 7 — Celebration Modal</span>
+                <span class="build-step-badge badge-lovable">LOVABLE</span>
+            </div>
+            <div class="build-step-content collapsible-content">
+                <div class="build-step-note">
+                    <strong>Teaching Point:</strong> The payoff moment. This is the emotional reward that builds habits.
+                </div>
+                <div class="prompt-code" id="prompt-step7">
+                    <button class="copy-btn" onclick="copyPrompt('prompt-step7')">Copy</button>Implement a goal-completion celebration modal that appears when:
+hydrationTotal >= dailyGoal
+
+Requirements:
+– Modal text: "Goal achieved! Your body thanks you."
+– Add subtle confetti animation (CSS-based, no heavy libraries)
+– Add "Continue" button to dismiss modal
+– Ensure celebration triggers ONLY once per day (track in LocalStorage)
+– Modal should feel rewarding but not over-the-top
+
+EXCLUSIONS: Do NOT add sound effects.
+
+STOP after modal + confetti are functional.
+Confirm with: "Goal celebration implemented. Ready for Step 8."</div>
+                <div class="build-step-verify">
+                    <strong>Verify:</strong> Hit goal → modal appears with confetti. Dismiss → continue using app. Refresh → modal doesn't reappear same day.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Step 8 -->
+        <div class="build-step">
+            <div class="build-step-header" onclick="toggleStep(this)">
+                <span class="build-step-title">Step 8 — Micro-copy</span>
+                <span class="build-step-badge badge-lovable">LOVABLE</span>
+            </div>
+            <div class="build-step-content collapsible-content">
+                <div class="build-step-note">
+                    <strong>Teaching Point:</strong> Words create personality. The same function feels different with thoughtful copy.
+                </div>
+                <div class="prompt-code" id="prompt-step8">
+                    <button class="copy-btn" onclick="copyPrompt('prompt-step8')">Copy</button>Enhance reminder notifications with thoughtful micro-copy.
+
+Rotate through ONLY these 5 messages:
+1. "A quick sip helps your focus."
+2. "Small hydration boost?"
+3. "Your body could use a refill."
+4. "Long meeting? A sip may help."
+5. "Stay refreshed, stay sharp."
+
+Requirements:
+– Rotate randomly through messages (not sequential)
+– Must respect the reminder ON/OFF toggle
+– Do NOT over-notify (keep existing timing intervals)
+
+EXCLUSIONS: No additional notification types, no custom message creation.
+
+STOP after messages are integrated.
+Confirm with: "Micro-copy integrated. LOVABLE phase complete. Ready for COMPLETE Step 9."</div>
+                <div class="build-step-verify">
+                    <strong>Verify:</strong> Trigger multiple reminders → messages vary. Messages feel human, not robotic.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Step 9 -->
+        <div class="build-step">
+            <div class="build-step-header" onclick="toggleStep(this)">
+                <span class="build-step-title">Step 9 — Error Handling</span>
+                <span class="build-step-badge badge-complete">COMPLETE</span>
+            </div>
+            <div class="build-step-content collapsible-content">
+                <div class="build-step-note">
+                    <strong>Teaching Point:</strong> COMPLETE means handling failure gracefully. The app should never leave users confused.
+                </div>
+                <div class="prompt-code" id="prompt-step9">
+                    <button class="copy-btn" onclick="copyPrompt('prompt-step9')">Copy</button>Add clear error handling and permission management:
+
+1. If notification permission denied:
+   – Show in Settings: "Reminders are off. To enable, allow notifications in your browser settings."
+   – Disable the reminder toggle with explanation
+
+2. If LocalStorage is unavailable:
+   – Show toast/banner: "We couldn't save your progress. Check if private browsing is enabled."
+   – App should still function for current session
+
+3. If reminder scheduling fails:
+   – Show: "Reminder couldn't be scheduled. Please try again."
+   – Provide retry option
+
+Requirements:
+– Error messages should be helpful, not technical
+– Never show raw error codes to users
+– Always provide a path forward (what to do next)
+
+STOP after error handling is complete.
+Confirm with: "Error handling complete. Ready for Step 10."</div>
+                <div class="build-step-verify">
+                    <strong>Verify:</strong> Deny notification permission → helpful message appears. Open in private mode → appropriate warning.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Step 10 -->
+        <div class="build-step">
+            <div class="build-step-header" onclick="toggleStep(this)">
+                <span class="build-step-title">Step 10 — Onboarding + FAQ</span>
+                <span class="build-step-badge badge-complete">COMPLETE</span>
+            </div>
+            <div class="build-step-content collapsible-content">
+                <div class="build-step-note">
+                    <strong>Teaching Point:</strong> First impressions matter. Onboarding sets expectations and builds confidence.
+                </div>
+                <div class="prompt-code" id="prompt-step10">
+                    <button class="copy-btn" onclick="copyPrompt('prompt-step10')">Copy</button>Create a 3-step onboarding carousel:
+
+Page 1: "Tap to log your water." (show button visual)
+Page 2: "Watch your progress rise." (show progress bar visual)
+Page 3: "Get gentle reminders when needed." (show notification visual)
+
+Requirements:
+– Add Skip button (top right)
+– Add "Get Started" button on final page
+– Show onboarding only on first visit (track in LocalStorage)
+– Allow re-accessing onboarding from Help screen
+
+Help/FAQ Modal Content:
+– "Why track water?" - Brief health benefits
+– "How do reminders work?" - Explains progressive timing
+– "Where is my data stored?" - Explain LocalStorage, privacy-friendly, no server
+– "How do I reset my data?" - Instructions to clear
+
+STOP after onboarding + FAQ are functional.
+Confirm with: "Onboarding + FAQ complete. App build finished!"</div>
+                <div class="build-step-verify">
+                    <strong>Verify:</strong> Clear LocalStorage → onboarding appears. Complete onboarding → goes to Home. Help screen shows all FAQ items.
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    <!-- Section 6: Tools -->
+    <div class="card" id="tools">
+        <h2>Tools to Get Started</h2>
+        <p style="margin-bottom: 15px; color: #666;">
+            These tools let you build with AI through conversation.
+        </p>
+        
+        <div class="tools-grid">
+            <a href="https://lovable.dev" target="_blank" class="tool-card">
+                <div class="tool-icon">💜</div>
+                <div class="tool-name">Lovable</div>
+                <div class="tool-desc">Build web apps through conversation. Great for prototypes and simple tools.</div>
+                <div class="tool-link">lovable.dev →</div>
+            </a>
+            <a href="https://claude.ai" target="_blank" class="tool-card">
+                <div class="tool-icon">🤖</div>
+                <div class="tool-name">Claude</div>
+                <div class="tool-desc">AI assistant for writing, analysis, coding, and general tasks.</div>
+                <div class="tool-link">claude.ai →</div>
+            </a>
+            <a href="https://chat.openai.com" target="_blank" class="tool-card">
+                <div class="tool-icon">💬</div>
+                <div class="tool-name">ChatGPT</div>
+                <div class="tool-desc">Versatile AI assistant. Good all-rounder for many tasks.</div>
+                <div class="tool-link">chat.openai.com →</div>
+            </a>
+            <a href="https://v0.dev" target="_blank" class="tool-card">
+                <div class="tool-icon">⚡</div>
+                <div class="tool-name">v0</div>
+                <div class="tool-desc">Generate UI components and interfaces with AI.</div>
+                <div class="tool-link">v0.dev →</div>
+            </a>
+        </div>
+    </div>
+    
+    <!-- Section 7: Your First Win -->
+    <div class="card" id="first-win">
+        <h2>Your First Win</h2>
+        
+        <div class="first-win-box">
+            <h3>Before You Start, Answer These:</h3>
+            <ul class="first-win-questions">
+                <li data-num="1"><strong>What's one task you do repeatedly that feels mechanical?</strong><br><span style="color: #666; font-size: 0.9rem;">Not complex. Just tedious.</span></li>
+                <li data-num="2"><strong>What would "good enough" look like?</strong><br><span style="color: #666; font-size: 0.9rem;">Not perfect. Just useful to you.</span></li>
+                <li data-num="3"><strong>When will you spend 90 minutes on this?</strong><br><span style="color: #666; font-size: 0.9rem;">Actual day and time in the next 7 days.</span></li>
+            </ul>
+        </div>
+        
+        <h3>Your Commitment Device</h3>
+        <div class="commitment-options">
+            <div class="commitment-option">
+                <strong>A: Calendar</strong>
+                Block 90 min now.<br>
+                Label: "First AI Build"
+            </div>
+            <div class="commitment-option">
+                <strong>B: Partner</strong>
+                Tell someone:<br>
+                "I'm building X by [date]"
+            </div>
+            <div class="commitment-option">
+                <strong>C: Future Email</strong>
+                Email yourself for 7 days:<br>
+                "Did you build X?"
+            </div>
+        </div>
+        
+        <div class="rule-highlight">
+            <strong>The 15-Minute Rule:</strong> When you don't feel like starting, commit to just 15 minutes. Set a timer. What actually happens: you don't stop. Starting is the hard part.
+        </div>
+        
+        <h3>First Project Criteria</h3>
+        <ul class="checklist">
+            <li>Small — 2-3 hours, not weeks</li>
+            <li>Personal — for YOU, not a company initiative</li>
+            <li>Low stakes — if it fails, nothing bad happens</li>
+            <li>Immediately useful — you'd actually use the output</li>
+        </ul>
+        <p style="font-style: italic; color: #666; margin-top: 10px;">
+            If you can't check all four, pick a smaller project.
+        </p>
+    </div>
+    
+    <!-- Section 8: The 80/20 Reality -->
+    <div class="card">
+        <h2>The 80/20 Reality</h2>
+        <p style="margin-bottom: 15px;">
+            <strong style="color: #667eea;">AI builds ~80%:</strong> structure, first drafts, functionality.
+        </p>
+        <p style="margin-bottom: 15px;">
+            <strong style="color: #667eea;">You provide ~20%:</strong> judgment, refinement, edge cases.
+        </p>
+        <p style="font-style: italic; color: #666;">
+            That's leverage, not limitation.
+        </p>
+        
+        <div class="save-section">
+            <p style="color: #495057; margin-bottom: 15px;">
+                <strong>Save this page for offline access:</strong><br>
+                Press <kbd style="background: #e9ecef; padding: 2px 6px; border-radius: 3px;">Ctrl+S</kbd> (Windows) or <kbd style="background: #e9ecef; padding: 2px 6px; border-radius: 3px;">Cmd+S</kbd> (Mac)
+            </p>
+        </div>
+    </div>
+    
+    <!-- Section 9: Terms of Use -->
+    <div class="card terms-card" id="terms">
+        <div class="terms-header" onclick="toggleTerms()">
+            <h2 style="margin-bottom: 0; border-bottom: none; padding-bottom: 0;">Terms of Use & Copyright Notice</h2>
+            <span class="expand-icon" id="terms-icon">▼</span>
+        </div>
+        <div class="terms-content" id="terms-content">
+            <h3>Copyright</h3>
+            <p>
+                <strong>© 2025 Swarup Biswas. All rights reserved.</strong>
+            </p>
+            <p>
+                The SLC Product Development Sequence, SLC Framework, associated methodologies, 
+                build prompts, and workshop materials contained on this page are the proprietary 
+                intellectual property of Swarup Biswas.
+            </p>
+            
+            <h3>Permitted Use</h3>
+            <ul>
+                <li>Personal reference and learning</li>
+                <li>Building your own projects using these frameworks (personal use)</li>
+                <li>Sharing the link to this page (not the content itself)</li>
+            </ul>
+            
+            <h3>Prohibited Use</h3>
+            <p>Without explicit written permission from the author, you may NOT:</p>
+            <ul>
+                <li>Use these materials for commercial purposes</li>
+                <li>Use these materials for training, teaching, or educational programs</li>
+                <li>Use these materials for workshops, courses, or seminars</li>
+                <li>Redistribute, republish, or share the content</li>
+                <li>Create derivative works based on these frameworks</li>
+                <li>Use these materials to train AI models or datasets</li>
+                <li>Claim authorship or remove copyright notices</li>
+                <li>Include these materials in any product or service</li>
+            </ul>
+            
+            <h3>AI Training Restriction</h3>
+            <p>
+                This content is explicitly excluded from use in training machine learning models, 
+                large language models (LLMs), or any artificial intelligence systems. Automated 
+                scraping or indexing for AI training purposes is prohibited.
+            </p>
+            
+            <h3>Attribution</h3>
+            <p>
+                If you reference these frameworks in permitted contexts, please attribute as:
+                <br><em>"SLC Product Development Sequence © 2025 Swarup Biswas"</em>
+            </p>
+            
+            <div class="terms-contact">
+                <strong>Permission Requests & Contact</strong>
+                <p>
+                    For licensing inquiries, permission requests, or questions about permitted use, 
+                    please contact: <a href="mailto:swarup.biswas@outlook.com">swarup.biswas@outlook.com</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="quote">
+            "The gap between 'knows how' and 'has done it' is smaller than you think.<br>
+            But only action closes it."
+        </p>
+        
+        <div class="footer-copyright">
+            <strong>© 2025 Swarup Biswas. All Rights Reserved.</strong>
+            <p>SLC Product Development Sequence™ and associated frameworks are proprietary.</p>
+            <p>For personal reference only. Not licensed for commercial use, training, teaching, or redistribution.</p>
+            <p style="margin-top: 10px;">
+                <a href="mailto:swarup.biswas@outlook.com" style="color: rgba(255,255,255,0.9);">swarup.biswas@outlook.com</a>
+            </p>
+        </div>
+        
+        <p style="margin-top: 20px; font-size: 0.75rem; opacity: 0.5;">
+            Demystifying AI Workshop
+        </p>
+    </footer>
+    
+</div>
+
+<script>
+function copyPrompt(elementId) {
+    const element = document.getElementById(elementId);
+    const button = element.querySelector('.copy-btn');
+    
+    // Get text content without the button text
+    let text = element.innerText.replace('Copy', '').trim();
+    
+    navigator.clipboard.writeText(text).then(() => {
+        button.textContent = 'Copied!';
+        button.classList.add('copied');
+        setTimeout(() => {
+            button.textContent = 'Copy';
+            button.classList.remove('copied');
+        }, 2000);
+    });
+}
+
+function toggleStep(header) {
+    const content = header.nextElementSibling;
+    content.classList.toggle('active');
+}
+
+function toggleTerms() {
+    const content = document.getElementById('terms-content');
+    const icon = document.getElementById('terms-icon');
+    content.classList.toggle('active');
+    icon.classList.toggle('rotated');
+}
+
+// Smooth scrolling for nav links
+document.querySelectorAll('.nav-links a, .nav-copyright').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        
+        // If clicking on Terms link, auto-expand the section
+        if (this.getAttribute('href') === '#terms') {
+            setTimeout(() => {
+                const content = document.getElementById('terms-content');
+                const icon = document.getElementById('terms-icon');
+                if (!content.classList.contains('active')) {
+                    content.classList.add('active');
+                    icon.classList.add('rotated');
+                }
+            }, 500);
+        }
+    });
+});
+
+// Also handle inline links to terms
+document.querySelectorAll('a[href="#terms"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector('#terms');
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(() => {
+            const content = document.getElementById('terms-content');
+            const icon = document.getElementById('terms-icon');
+            if (!content.classList.contains('active')) {
+                content.classList.add('active');
+                icon.classList.add('rotated');
+            }
+        }, 500);
+    });
+});
+</script>
+
+</body>
+</html>
